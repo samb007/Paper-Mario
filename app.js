@@ -20,6 +20,8 @@ const normalAttack2 = document.querySelector('.normal-attack2');
 const specialAttack2 = document.querySelector('.special-attack2');
 const verbalAssault2 = document.querySelector('.verbal-assault2');
 const bothNormalAttack = document.getElementById('normal-attack');
+const health1 = document.querySelector('.bar1');
+const health2 = document.querySelector('.bar2');
 let playerChoice = 0;
 let normalAttackDmg1 = 20;
 let normalAttackDmg2 = 20;
@@ -39,7 +41,7 @@ mario1.addEventListener('click', ()=>{
         healthBar1.style.visibility= "visible";
         img1.src= "img/mario.png";
         player1 = "Mario"
-        attackMultiplier();
+        attackMultiplier1();
         
 })
 
@@ -50,7 +52,7 @@ bowser1.addEventListener('click', ()=>{
     healthBar1.style.visibility= "visible";
     img1.src= "img/bowser.png";
     player1 = "Bowser";
-    attackMultiplier();
+    attackMultiplier1();
 })
 
 princessPeach1.addEventListener('click', ()=>{    
@@ -60,7 +62,7 @@ princessPeach1.addEventListener('click', ()=>{
     healthBar1.style.visibility= "visible";
     img1.src= "img/princess-peach.png";
     player1 = "Princess Peach";
-    attackMultiplier();
+    attackMultiplier1();
 })
 
 mario2.addEventListener('click', ()=>{    
@@ -69,7 +71,7 @@ mario2.addEventListener('click', ()=>{
     healthBar2.style.visibility= "visible";
     img2.src= "img/mario.png";
     player2 = "Mario";
-    attackMultiplier();
+    attackMultiplier2();
 })
 
 bowser2.addEventListener('click', ()=>{    
@@ -78,7 +80,7 @@ bowser2.addEventListener('click', ()=>{
     healthBar2.style.visibility= "visible";
     img2.src= "img/bowser.png";
     player2 = "Bowser";
-    attackMultiplier();
+    attackMultiplier2();
 })
 
 princessPeach2.addEventListener('click', ()=>{    
@@ -87,11 +89,12 @@ princessPeach2.addEventListener('click', ()=>{
     healthBar2.style.visibility= "visible";
     img2.src= "img/princess-peach.png";
     player2 = "Princess Peach"
+    attackMultiplier2();
 })
 
 // Attack multiplier
 
-const attackMultiplier = () =>{
+const attackMultiplier1 = () =>{
     if (player1 == "Mario"){
         specialAttackDmg1 = 40
     }
@@ -101,33 +104,52 @@ const attackMultiplier = () =>{
     else if (player1 == "Princess Peach"){
         verbalAssaultDmg1 = 60
     }
-    else if (player2 == "Mario"){
-        specialAttackDmg2 = 30
-    }
-    else if (player2 == "Bowser"){
-        normalAttackDmg2 = 40
-    }
-    else if (player2 == "Princess Peach"){
-        verbalAssaultDmg2 = 60
-    }
-    console.log(normalAttackDmg1)
-    console.log(normalAttackDmg2)
 }
-attackMultiplier();
-// All attack functions
+const attackMultiplier2 = () =>{
 
+
+if (player2 == "Mario"){
+    specialAttackDmg2 = 30
+}
+else if (player2 == "Bowser"){
+    normalAttackDmg2 = 40
+}
+else if (player2 == "Princess Peach"){
+    verbalAssaultDmg2 = 60
+}
+console.log(normalAttackDmg1)
+console.log(normalAttackDmg2)
+}
+attackMultiplier1();
+attackMultiplier2();
+
+// Health bar  
+const healthBar = ()=>{
+    health1.style.width = health[0] + '%'
+    health2.style.width = health[1] + '%'
+    if (health[0] <= 0){
+        health1.style.width = 0 + '%'
+    }
+    else if (health[1] <=0){
+        health2.style.width = 0 + '%'
+    }
+}
+
+
+// All attack functions
 bothNormalAttack.addEventListener('click',()=>{
         health[1]-=normalAttackDmg1;
         attack1.style.visibility="hidden";
         attack2.style.visibility= "visible";
         console.log(health[1]);
-        
+        healthBar()
 })
 specialAttack1.addEventListener('click', () => {
         health[1]-=specialAttackDmg1;
         attack1.style.visibility="hidden";
         attack2.style.visibility= "visible";
         console.log(health[1]);
+        healthBar()
  })
  
  verbalAssault1.addEventListener('click', () => {
@@ -135,6 +157,7 @@ specialAttack1.addEventListener('click', () => {
         attack1.style.visibility="hidden";
         attack2.style.visibility= "visible";
         console.log(health[1]);
+        healthBar()
  })
  
  normalAttack2.addEventListener('click', () => {
@@ -142,6 +165,7 @@ specialAttack1.addEventListener('click', () => {
         attack1.style.visibility="visible";
         attack2.style.visibility= "hidden";
         console.log(health[0]);
+        healthBar()
  })
  
  specialAttack2.addEventListener('click', () => {
@@ -149,6 +173,7 @@ specialAttack1.addEventListener('click', () => {
         attack2.style.visibility="hidden";
         attack1.style.visibility="visible";
         console.log(health[0]);
+        healthBar()
  })
  
  verbalAssault2.addEventListener('click', () => {
@@ -156,7 +181,7 @@ specialAttack1.addEventListener('click', () => {
         attack2.style.visibility="hidden";
         attack1.style.visibility="visible";
         console.log(health[0]);
+        healthBar()
  })
-
 
 
